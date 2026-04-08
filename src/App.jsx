@@ -4,9 +4,11 @@ import "./App.css";
 import abdusalamPhoto from "./assets/abdusalam-optimized.jpg";
 import hennaPhoto from "./assets/henna-optimized.jpg";
 
+const SECTION_MOTION_DURATION = 0.8;
+
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 1.2, ease: "easeOut" } },
+  show: { opacity: 1, y: 0, transition: { duration: SECTION_MOTION_DURATION, ease: "easeOut" } },
 };
 
 const stagger = {
@@ -15,14 +17,13 @@ const stagger = {
 
 const coupleFade = {
   hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+  show: { opacity: 1, y: 0, transition: { duration: SECTION_MOTION_DURATION, ease: "easeOut" } },
 };
 
 const coupleStagger = {
   show: { transition: { staggerChildren: 0.12, delayChildren: 0.08 } },
 };
-
-const PETAL_COLORS = ["#7a2433", "#d28ea0", "#efe0c1", "#c49b43", "#ddc8a5", "#fffaf4"];
+const PETAL_COLORS = ["#fcfaf5", "#f5e6d3", "#e2c99c", "#ffffff", "#ebe7dd", "#dcc39a"];
 const SYMBOLS = {
   pin: "\u{1F4CD}",
   sparkle: "\u2726",
@@ -308,7 +309,7 @@ export default function App() {
       const targetScroll = sections[index].offsetTop;
 
       animate(el.scrollTop, targetScroll, {
-        duration: 0.8, // 0.8 second scroll speed as requested
+        duration: SECTION_MOTION_DURATION,
         ease: [0.33, 1, 0.68, 1],
         onUpdate: (latest) => { el.scrollTop = latest; },
         onComplete: () => {
@@ -457,10 +458,10 @@ export default function App() {
       {/* 3. CORDIALLY INVITED CARD */}
       <section className="section invite-card-section">
         <Motion.div className="invite-card" variants={stagger} initial="hidden" whileInView="show" viewport={{ root: scrollRootRef, once: true, amount: 0.3 }}>
-          <span className="card-corner tl">áƒ¦</span>
-          <span className="card-corner tr">áƒ¦</span>
-          <span className="card-corner bl">áƒ¦</span>
-          <span className="card-corner br">áƒ¦</span>
+          <span className="card-corner tl">{SYMBOLS.flower}</span>
+          <span className="card-corner tr">{SYMBOLS.flower}</span>
+          <span className="card-corner bl">{SYMBOLS.flower}</span>
+          <span className="card-corner br">{SYMBOLS.flower}</span>
           <Motion.div className="card-bismillah" variants={fadeUp}>{"\u0628\u0650\u0633\u0652\u0645\u0650 \u0627\u0644\u0644\u064e\u0651\u0647\u0650 \u0627\u0644\u0631\u064e\u0651\u062d\u0652\u0645\u064e\u0670\u0646\u0650 \u0627\u0644\u0631\u064e\u0651\u062d\u0650\u064a\u0645\u0650"}</Motion.div>
           <div className="card-shimmer" />
           <Motion.div className="card-cordially" variants={fadeUp}>Cordially Invited</Motion.div>
@@ -569,7 +570,7 @@ export default function App() {
       <section className="section quote2-section">
         <Motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ root: scrollRootRef, once: true, amount: 0.3 }} style={{ position: "relative", zIndex: 2, width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
           <Motion.h2 className="section-heading" variants={fadeUp}>
-            Our Prayer & Dua <span>{`${SYMBOLS.middleDot} `}{"\u062f\u0639\u0627\u0621 للعروسين"}</span>
+            Our Prayer & Dua <span>{`${SYMBOLS.middleDot} `}{"\u062f\u0639\u0627\u0621 \u0644\u0644\u0639\u0631\u0648\u0633\u064a\u0646"}</span>
           </Motion.h2>
           <div className="shimmer-line" />
           <Motion.div className="dua-card" variants={stagger} style={{
@@ -581,7 +582,7 @@ export default function App() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            boxShadow: "0 18px 36px rgba(24, 10, 15, 0.26)"
+            boxShadow: "var(--shadow-strong)"
           }}>
             <Motion.div className="arabic-quote" variants={fadeUp} style={{ fontSize: "clamp(18px, 4vw, 28px)", lineHeight: 1.6, marginBottom: "12px" }}>
               {"\u0627\u0644\u0644\u064e\u0651\u0647\u064f\u0645\u064e\u0651 \u0628\u064e\u0627\u0631\u0650\u0643\u064e \u0644\u064e\u0647\u064f\u0645\u064e\u0627 \u0648\u064e\u0628\u064e\u0627\u0631\u0650\u0643\u064e \u0639\u064e\u0644\u064e\u064a\u0652\u0647\u0650\u0645\u064e\u0627 \u0648\u064e\u0627\u062c\u0652\u0645\u064e\u0639\u064e \u0628\u064e\u064a\u0652\u0646\u064e\u0647\u064f\u0645\u064e\u0627 \u0641\u0650\u064a \u0627\u0644\u0652\u062e\u064e\u064a\u0652\u0631\u0650"}
@@ -621,19 +622,19 @@ export default function App() {
       {/* FOOTER */}
       <footer className="section footer-section">
         <div className="shimmer-line" style={{ marginBottom: "20px" }} />
-        <div className="footer-text">بارك الله لكما</div>
+        <div className="footer-text">{"\u0628\u0627\u0631\u0643 \u0627\u0644\u0644\u0647 \u0644\u0643\u0645\u0627"}</div>
         <div className="footer-names">
           <span>Abdusalam</span>
           <span>&amp;</span>
           <span>Fathima Hanna</span>
         </div>
-        <div className="footer-divider">✦ ✦ ✦</div>
+        <div className="footer-divider">{`${SYMBOLS.sparkle} ${SYMBOLS.sparkle} ${SYMBOLS.sparkle}`}</div>
         <div className="quote-translation footer-quote">
           "And He it is who has created man from water, then He has established relationships of lineage and marriage."
         </div>
         <div className="quote-source footer-source">Surah Al-Furqan 25:54</div>
         <div className="shimmer-line" style={{ margin: "16px auto" }} />
-        <div className="footer-meta">17 · 05 · 2026  ✦  KP LOUNGE AUDITORIUM  ✦  KONDOTTY, KERALA</div>
+        <div className="footer-meta">{`17 ${SYMBOLS.middleDot} 05 ${SYMBOLS.middleDot} 2026  ${SYMBOLS.sparkle}  KP LOUNGE AUDITORIUM  ${SYMBOLS.sparkle}  KONDOTTY, KERALA`}</div>
       </footer>
 
     </div>
