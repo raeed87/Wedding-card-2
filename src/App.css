@@ -614,8 +614,19 @@
   letter-spacing: 2px;
 }
 
+@media (max-width: 540px) {
+  .card-names {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .card-groom,
+  .card-bride {
+    flex: auto;
+  }
+}
 
-/* â”€â”€ Section 4: Events â”€â”€ */
+
+/* ── Section 4: Events ── */
 .events-section {
   background: transparent;
   align-items: center;
